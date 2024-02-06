@@ -271,42 +271,42 @@
           
           <h3 class="mngroupname">Tea</h3>
           
-          <div class="item active"><i class="checked active fa fa-check"></i>
+          <div class="item active" id="tea-black"><i class="checked active fa fa-check"></i>
             <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Black</p>
           </div>
-          <div class="item"><i class="checked fa fa-check"></i>
+          <div class="item" id="tea-matcha"><i class="checked fa fa-check"></i>
             <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Matcha</p>
           </div>
-          <div class="item"><i class="checked fa fa-check"></i>
+          <div class="item" id="tea-lavender"><i class="checked fa fa-check"></i>
             <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Lavender</p>
           </div>
-          <div class="item"><i class="checked fa fa-check"></i>
+          <div class="item" id="tea-orange"><i class="checked fa fa-check"></i>
             <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Orange</p>
           </div>
-          <div class="item"><i class="checked fa fa-check"></i>
+          <div class="item" id="tea-hibiscus"><i class="checked fa fa-check"></i>
             <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Hibiscus</p>
           </div>
-          <div class="item"><i class="checked fa fa-check"></i>
+          <div class="item" id="tea-ube"><i class="checked fa fa-check"></i>
             <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Ube</p>
           </div>
-          <div class="item"><i class="checked fa fa-check"></i>
+          <div class="item" id="tea-karlson"><i class="checked fa fa-check"></i>
             <div class="imgframe"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618"></div>
             <p>Milk</p>
           </div>
           
           <h3 class="mngroupname">Boba</h3>
           
-          <div class="item2 active"><i class="checked active fa fa-check"></i>
+          <div class="item2 active" id="boba-regular"><i class="checked active fa fa-check"></i>
             <div class="imgframe"><img src="https://t3.ftcdn.net/jpg/06/54/00/86/360_F_654008606_mkMdaQtAq9Eooa940o8NjhDX5LDczjFj.jpg"></div>
             <p>Regular</p>
           </div>
-          <div class="item2"><i class="checked fa fa-check"></i>
+          <div class="item2" id="boba-ube"><i class="checked fa fa-check"></i>
             <div class="imgframe"><img src="https://t3.ftcdn.net/jpg/06/54/00/86/360_F_654008606_mkMdaQtAq9Eooa940o8NjhDX5LDczjFj.jpg"></div>
             <p>Ube</p>
           </div>
@@ -330,22 +330,21 @@
     </footer>
     
     <script>
+      function updateOrder() {
+        
+      }
+    
       const items = document.querySelectorAll('.item');
       
       items.forEach(item => {
         item.addEventListener('click', () => {
-          if (item.classList.contains('active')) {
+          items.forEach(item => {
             item.classList.remove('active');
             item.querySelector('.checked').style.display = 'none';
-          } else {
-            items.forEach(item => {
-              item.classList.remove('active');
-              item.querySelector('.checked').style.display = 'none';
-            });
-      
-            item.classList.add('active');
-            item.querySelector('.checked').style.display = 'flex';
-          }
+          });
+          item.classList.add('active');
+          item.querySelector('.checked').style.display = 'flex';
+          updateOrder();
         });
       });
       
@@ -353,18 +352,13 @@
       
       items2.forEach(item2 => {
         item2.addEventListener('click', () => {
-          if (item2.classList.contains('active')) {
+          items2.forEach(item2 => {
             item2.classList.remove('active');
             item2.querySelector('.checked').style.display = 'none';
-          } else {
-            items2.forEach(item2 => {
-              item2.classList.remove('active');
-              item2.querySelector('.checked').style.display = 'none';
-            });
-      
-            item2.classList.add('active');
-            item2.querySelector('.checked').style.display = 'flex';
-          }
+          });
+          item2.classList.add('active');
+          item2.querySelector('.checked').style.display = 'flex';
+          updateOrder();
         });
       });
     </script>
