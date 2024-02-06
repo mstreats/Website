@@ -216,21 +216,27 @@
         outline: 5px solid #bf67e3;
       }
       
-      .item img, .item2 img {
-        margin: 5px;
+      .imgframe {
+        height: 50px;
         width: calc(100% - 10px);
-        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+      }
+      
+      .item img, .item2 img {
         position: relative;
-        z-index: 2;
         border-radius: 8px;
-        min-height: 50px;
+        height: 100%;
       }
       
       .item p, .item2 p {
-        margin-top: 5px;
+        margin-top: 10px;
         color: #545454;
         width: 100%;
         text-align: center;
+        position: absolute;
         
       }
       
@@ -266,42 +272,42 @@
           <h3 class="mngroupname">Tea</h3>
           
           <div class="item active"><i class="checked active fa fa-check"></i>
-            <img src="https://example.com">
+            <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Black</p>
           </div>
           <div class="item"><i class="checked fa fa-check"></i>
-            <img src="https://example.com">
+            <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Matcha</p>
           </div>
           <div class="item"><i class="checked fa fa-check"></i>
-            <img src="https://example.com">
+            <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Lavender</p>
           </div>
           <div class="item"><i class="checked fa fa-check"></i>
-            <img src="https://example.com">
+            <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Orange</p>
           </div>
           <div class="item"><i class="checked fa fa-check"></i>
-            <img src="https://example.com">
+            <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Hibiscus</p>
           </div>
           <div class="item"><i class="checked fa fa-check"></i>
-            <img src="https://example.com">
+            <div class="imgframe"><img src="https://www.shutterstock.com/image-photo/porcelain-cup-tea-milk-isolated-260nw-380667799.jpg"></div>
             <p>Ube</p>
           </div>
           <div class="item"><i class="checked fa fa-check"></i>
-            <img src="https://example.com">
+            <div class="imgframe"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618"></div>
             <p>Milk</p>
           </div>
           
           <h3 class="mngroupname">Boba</h3>
           
           <div class="item2 active"><i class="checked active fa fa-check"></i>
-            <img src="https://example.com">
+            <div class="imgframe"><img src="https://t3.ftcdn.net/jpg/06/54/00/86/360_F_654008606_mkMdaQtAq9Eooa940o8NjhDX5LDczjFj.jpg"></div>
             <p>Regular</p>
           </div>
           <div class="item2"><i class="checked fa fa-check"></i>
-            <img src="https://example.com">
+            <div class="imgframe"><img src="https://t3.ftcdn.net/jpg/06/54/00/86/360_F_654008606_mkMdaQtAq9Eooa940o8NjhDX5LDczjFj.jpg"></div>
             <p>Ube</p>
           </div>
         </div>
