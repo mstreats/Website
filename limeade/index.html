@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -77,6 +78,98 @@
         color: #696969;
         padding-left: 10px;
         background: #ffffff;
+        z-index: 10;
+      }
+      
+      .summer {
+        height: calc(100vh - 50px);
+        width: 100vw;
+        background: #000000dd;
+        position: absolute;
+        bottom: 0;
+        z-index: 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .pwd {
+        height: 200px;
+        width: 250px;
+        background: linear-gradient(#283a73 0%, #0a2553 100%);
+        border-radius: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px 0 #696969;
+      }
+      
+      .pwd h2, .pwd h4 {
+        margin: 0;
+        margin-bottom: 10px;
+        color: #ffffff;
+      }
+      
+      .pwd input {
+        height: 30px;
+        width: 200px;
+        background: transparent;
+        border: 3px solid #465982;
+        border-radius: 10px;
+        padding-left: 5px;
+        color: #ffffff;
+      }
+      
+      .pwd button {
+        height: 35px;
+        width: 210px;
+        background: transparent;
+        border: 3px solid #465982;
+        border-radius: 10px;
+        padding-left: 5px;
+        color: #ffffff;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+      
+      .pwd button:hover {
+        background: #ffffff11;
+        cursor: pointer;
+      }
+      
+      .pwd input:focus {
+        outline: 1px solid #6679a2;
+      }
+      
+      .checkbacksoon {
+        height: 200px;
+        width: 250px;
+        background: linear-gradient(#283a73 0%, #0a2553 100%);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px 0 #696969;
+      }
+      
+      .checkbacksoon h2, .checkbacksoon h4 {
+        color: #ffffff;
+        text-align: center;
+        margin: 10px;
+        margin-bottom: 0px;
+      }
+      
+      .checkbacksoon span {
+        color: #696969;
+        font-size: 13px;
+        margin: 10px;
+      }
+      
+      .checkbacksoon span:hover {
+        cursor: pointer;
+        text-decoration: underline;
       }
     </style>
   </head>
@@ -89,6 +182,20 @@
       <button style="background: linear-gradient(#cb8c4f 0%, #fbbc7f 100%);" onclick="location.href='/icecream'">Ice Cream <i class="fa fa-ice-cream"></i></button>
     </nav>
     
+    <div class="summer" id="summer">
+      <div class="checkbacksoon" id="checkbacksoon">
+        <h2>Sorry!</h2>
+        <h4>This page is not currently active, check back in summer.</h4>
+        <span id="showpwd">Enter password for dev purposes <i class="fa fa-arrow-right"></i></span>
+      </div>
+      <div class="pwd" id="pwd">
+        <h2>Enter Password</h2>
+        <h4>Hint: null</h4>
+        <input id="pwdinput" placeholder="Enter password here..." type="password">
+        <button onclick="submitpwd()">Submit</button>
+      </div>
+    </div>
+    
     <h1>Limeade <i class="fa fa-bottle-water"></i></h1>
     
     <div class="content">
@@ -99,5 +206,29 @@
       All code copyright &copy; wraithcode 2024
     </footer>
     
+    <script>
+      var showpwd = document.getElementById("showpwd");
+      var pwd = document.getElementById("pwd");
+      var notactive = document.getElementById("checkbacksoon");
+      var pwdinput = document.getElementById("pwdinput");
+      var frame = document.getElementById("summer");
+      
+      document.addEventListener("DOMContentLoaded", function() {
+        showpwd.addEventListener("click", function() {
+          pwd.style.display = "flex";
+          notactive.style.display = "none";
+        });
+      });
+      
+      function submitpwd() {
+        var val = pwdinput.value;
+        
+        if (val == "r2d2") {
+          frame.style.display = "none";
+        } else {
+          return;
+        }
+      };
+    </script>
   </body>
 </html>
