@@ -1,0 +1,109 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>M's Treats</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+      body {height: 100vh; width: 100vw; margin: 0; font-family: "Sans-Serif", Tahoma, Verdana; background: linear-gradient(131deg, #fbbc7f 0%, #bf67e3 33%, #83ff7e 67%, #fff386 100%);}
+      
+      nav {height: 50px; width: 100%; background: #696969; display: flex; box-shadow: 0 -50px 20px 50px #000000;}
+      nav button {height: 100%; width: 100px; display: block; border: none; border-radius: none; position: relative; cursor: pointer;}
+      nav button::before {content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 50px; background-color: rgba(0, 0, 0, 0.1); opacity: 0; pointer-events: none; /* To allow button clicks */ transition: opacity 0.3s ease;}
+      nav button:hover:before {opacity: 1;}
+      
+      h1 {font-size: 50px; color: #ffffff; text-shadow: 5px 5px 5px #696969; margin: 0; width: 100%; display: flex; justify-content: center; align-items: center; height: 100px; width: 100%;}
+      .content {background: linear-gradient(#ffffff00 0%, #bf67e3 100%); width: calc(100% - 40px); display: flex; height: calc(100% - 210px); padding: 20px;}
+      .menu {height: 100%; width: 100%; background: #ffffff44; border-radius: 20px; overflow: hidden;}
+      .menu h2 {color: #ffffff; text-shadow: 5px 5px 5px #696969; text-decoration: underline; height: 60px; width: 100%; display: flex; align-items: center; justify-content: center; margin: 0;}
+      
+      footer {height: 20px; width: calc(100% - 10px); position: absolute; bottom: 0; color: #696969; padding-left: 10px; background: #ffffff;}
+      h3 {color: #ffffff; text-shadow: 3px 3px 3px #696969; text-decoration: underline; margin: 0;}
+      
+      .mnav {height: 50px; width: 100%; background: #ffffff44; border-top: 1px solid #ffffff; border-bottom: 1px solid #ffffff; display: flex; justify-content: center;}
+      .mnbtn {height: 100%; width: 100px; display: block; border: none; border-radius: none; position: relative; cursor: pointer; transition: 0.2s linear; background: #ffffff0a; padding: 0;}
+      .mnbtn:hover {background: #ffffff31; cursor: pointer;}
+      .pages-frame {width: 100%; height: calc(100% - 110px); background: #ffffff22; overflow: scroll;}
+      .page {display: none; background: transparent;}
+      .page[current] {display: flex;}
+      .mnbtn[current] {border-bottom: 3px solid gray;}
+    </style>
+  </head>
+  <body>
+    <nav>
+      <button style="background: linear-gradient(#dddddd 0%, #ffffff 100%);" onclick="location.href='/'">Home <i class="fa fa-home"></i></button>
+      <button style="background: linear-gradient(#8f37b3 0%, #bf67e3 100%);" onclick="location.href='/order'">Order <i class="fa fa-shopping-cart"></i></button>
+    </nav>
+    
+    <h1>Order <i class="fa fa-shopping-cart"></i></h1>
+    
+    <div class="content">
+      <div class="menu">
+        <h2>Menu</h2>
+        <div class="mnav">
+          <button class="mnbtn" id="boba" current="true">Boba</button>
+          <button class="mnbtn" id="cocoa">Hot Cocoa</button>
+          <button class="mnbtn" id="lime">Limeade</button>
+          <button class="mnbtn" id="ice">Ice Cream</button>
+        </div>
+        <div class="pages-frame">
+          
+          <div class="page" id="bobapage" current="true">
+            <h4>Boba Page</h4>
+            <!-- etc -->
+          </div>
+          
+          <div class="page" id="cocoapage">
+            <h4>Hot Cocoa Page</h4>
+            <div class="item">
+              
+            </div>
+          </div>
+          
+          <div class="page" id="limepage">
+            <h4>Limeade Page</h4>
+            <!-- etc -->
+          </div>
+          
+          <div class="page" id="icepage">
+            <h4>Ice Cream Page</h4>
+            <!-- etc -->
+          </div>
+          
+        </div>
+      </div>
+    </div><!-- content -->
+    
+    <footer>
+      All code copyright &copy; wraithcode 2024
+    </footer>
+    
+    <script>
+      const buttons = document.querySelectorAll('.mnbtn');
+      const pages = document.querySelectorAll('.page');
+      let page = '';
+    
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          buttons.forEach(btn => {
+            btn.style.borderBottom = 'none';
+          });
+          
+          button.style.borderBottom = '3px solid gray';
+          page = button.id;
+    
+          pages.forEach(page => {
+            if (page.id === `${button.id}page`) {
+              page.style.display = 'flex';
+            } else {
+              page.style.display = 'none';
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
