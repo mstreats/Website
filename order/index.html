@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -49,7 +46,7 @@
         border-radius: 10px;
       }
       
-      .item textframe {
+      .item .textframe {
         height: 100%;
         color: #ffffff;
         text-shadow: 2px 2px 5px #696969;
@@ -58,8 +55,8 @@
         position: relative;
       }
       
-      .item textframe h4 {margin: 0;}
-      .item textframe p {margin: 0; position: absolute; bottom: 0;}
+      .item .textframe h4 {margin: 0;}
+      .item .textframe p {margin: 0; position: absolute; bottom: 0;}
       .item price {color: #00f33a; text-shadow: 2px 2px 5px #696969; font-weight: bold; display: flex; align-items: center; justify-content: center; position: absolute; right: 10px; top: 0; height: 100%;}
     </style>
   </head>
@@ -83,31 +80,19 @@
         <div class="pages-frame">
           
           <div class="page" id="bobapage" current="true">
-            <h4>Boba Page</h4>
-            <!-- etc -->
+            <!-- JavaScript adds the items here -->
           </div>
           
           <div class="page" id="cocoapage">
-            <h4>Hot Cocoa Page</h4>
-            <div class="item">
-              <img src="https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618">
-              <textframe>
-                <h4>MILKMAN KARLSON</h4>
-                <p>DescRiPatioNeaHye<br>DescRiPatioNeaHye2</p>
-              </textframe>
-              <price>$0.00</price>
-            </div>
+            <!-- JavaScript adds the items here -->
           </div>
           
           <div class="page" id="limepage">
-            <h4>Limeade Page
-          </h4>
-            <!-- etc -->
+            <!-- JavaScript adds the items here -->
           </div>
           
           <div class="page" id="icepage">
-            <h4>Ice Cream Page</h4>
-            <!-- etc -->
+            <!-- JavaScript adds the items here -->
           </div>
           
         </div>
@@ -140,6 +125,30 @@
             }
           });
         });
+      });
+      
+      function addItems(pageid, imgurl, name, desc, price) {
+        var pg = document.getElementById(pageid);
+        
+        const newItem = document.createElement('div');
+        newItem.className = "item";
+        newItem.innerHTML = `
+          <img src="${imgurl}">
+          <div class="textframe">
+            <h4>${name}</h4>
+            <p>${desc}</p>
+          </div>
+          <price>${"$" + price}</price>
+        `;
+        pg.appendChild(newItem);
+      }
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        addItems("bobapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "MILKMAN KARLSON", "UwU<br>urmom", "5.43");
+        addItems("bobapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "MILKMAN KARLSON", "UwU<br>urmom", "5.43");
+        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Normal", "The classic deliciousness.", "1.50");
+        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Peppermint", "Peppery and minty.", "1.50");
+        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Strawberry", "shortcake?", "1.50");
       });
     </script>
   </body>
