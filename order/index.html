@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,9 +28,39 @@
       .mnbtn {height: 100%; width: 100px; display: block; border: none; border-radius: none; position: relative; cursor: pointer; transition: 0.2s linear; background: #ffffff0a; padding: 0;}
       .mnbtn:hover {background: #ffffff31; cursor: pointer;}
       .pages-frame {width: 100%; height: calc(100% - 110px); background: #ffffff22; overflow: scroll;}
-      .page {display: none; background: transparent;}
       .page[current] {display: flex;}
       .mnbtn[current] {border-bottom: 3px solid gray;}
+      
+      .page {display: none; flex-direction: column}
+      
+      .item {
+        height: 80px;
+        width: calc(100% - 20px);
+        background: #ffffff44;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+      }
+      
+      .item img {
+        height: 100%;
+        width: auto;
+        border-radius: 10px;
+      }
+      
+      .item textframe {
+        height: 100%;
+        color: #ffffff;
+        text-shadow: 2px 2px 5px #696969;
+        margin: 0;
+        margin-left: 10px;
+        position: relative;
+      }
+      
+      .item textframe h4 {margin: 0;}
+      .item textframe p {margin: 0; position: absolute; bottom: 0;}
+      .item price {color: #00f33a; text-shadow: 2px 2px 5px #696969; font-weight: bold; display: flex; align-items: center; justify-content: center; position: absolute; right: 10px; top: 0; height: 100%;}
     </style>
   </head>
   <body>
@@ -59,12 +90,18 @@
           <div class="page" id="cocoapage">
             <h4>Hot Cocoa Page</h4>
             <div class="item">
-              
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618">
+              <textframe>
+                <h4>MILKMAN KARLSON</h4>
+                <p>DescRiPatioNeaHye<br>DescRiPatioNeaHye2</p>
+              </textframe>
+              <price>$0.00</price>
             </div>
           </div>
           
           <div class="page" id="limepage">
-            <h4>Limeade Page</h4>
+            <h4>Limeade Page
+          </h4>
             <!-- etc -->
           </div>
           
