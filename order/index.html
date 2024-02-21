@@ -63,7 +63,7 @@
       .item price button {
         background: #f0f0f0;
         padding: 7px 4px;
-        color: #acacca;
+        color: #9cbcba;
         border: none;
         border-radius: 10px;
         font-weight: bold;
@@ -75,6 +75,23 @@
         cursor: pointer;
         transform: translate(2px, 2px);
         box-shadow: 0 0 #ffffff;
+      }
+      
+      #addToCartPopup {
+        padding: 6px 8px;
+        position: fixed;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ececec;
+        color: #09ff1a;
+        font-weight: bold;
+        text-shadow: 1px 1px 3px #444444;
+        text-align: center;
+        border-radius: 10px;
+        opacity: 0;
+        transition: opacity 0.15s ease-in-out;
+        max-width: calc(100% - 20px);
       }
     </style>
   </head>
@@ -116,6 +133,7 @@
         </div>
       </div>
     </div><!-- content -->
+    <div id="addToCartPopup">TEST</div>
     
     <footer>
       All code copyright &copy; wraithcode 2024
@@ -145,7 +163,7 @@
         });
       });
       
-      function addItems(pageid, imgurl, name, desc, price) {
+      function addItems(pageid, imgurl, name, desc, price, category) {
         var pg = document.getElementById(pageid);
         
         const newItem = document.createElement('div');
@@ -156,21 +174,28 @@
             <h4>${name}</h4>
             <p>${desc}</p>
           </div>
-          <price>${"$" + price}<button onclick="addToCart(${name}, ${price})">Add to cart <i class="fa fa-cart-plus"></i></button></price>
+          <price>${"$" + price}<button onclick="addToCart('${name}', '${category}', '${price}')">Add to cart <i class="fa fa-cart-plus"></i></button></price>
         `;
         pg.appendChild(newItem);
       }
       
       document.addEventListener('DOMContentLoaded', () => {
-        addItems("bobapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "MILKMAN KARLSON", "UwU<br>urmom", "5.43");
-        addItems("bobapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "MILKMAN KARLSON", "UwU<br>urmom", "5.43");
-        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Normal", "The classic deliciousness.", "1.50");
-        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Peppermint", "Peppery and minty.", "1.50");
-        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Strawberry", "shortcake?", "1.50");
+        addItems("bobapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "MILKMAN KARLSON", "UwU<br>urmom", "5.43", "Boba");
+        addItems("bobapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "MILKMAN KARLSON", "UwU<br>urmom", "5.43", "Boba");
+        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Normal", "The classic deliciousness.", "1.50", "Hot Cocoa");
+        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Peppermint", "Peppery and minty.", "1.50", "Hot Cocoa");
+        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Strawberry", "shortcake?", "1.50", "Hot Cocoa");
       });
       
-      function addToCart(name, price) {
-        
+      function addToCart(name, category, price) {
+        var popup = document.getElementById("addToCartPopup");
+        popup.innerHTML = "Added to cart: <br>" + name + " " + category + " for " + "$" + price;
+        popup.style.pointerEvents = "all";
+        popup.style.opacity = "1";
+        setTimeout(() => {
+          popup.style.pointerEvents = "none";
+          popup.style.opacity = "0";
+        }, 3000);
       }
     </script>
   </body>
