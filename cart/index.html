@@ -50,6 +50,7 @@
 			.paymentoptions {width: 290px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 20px; background: #eaeaea; border-radius: 10px;}
 			.paymentoption {height: 30px; width: 30px; background: #ffffff; border-radius: 5px;}
 			.paymentoption:hover {outline: 2px solid #8dbf8f; cursor: pointer;}
+			.paymentoption.selected {outline: 3px solid #addfaf;}
       #checkoutcontainer button {width: 290px; padding: 8px 5px; border-radius: 10px; border: 3px solid #addfaf; font-size: 15px; font-weight: bold; color: #adadad; background: #ffffff; transition: 0.2s ease;}
       #checkoutcontainer button:hover {cursor: pointer; color: #9e9e9e; box-shadow: 0 0 5px #adadad;}
       .exitcheckout {position: absolute; top: 20px; right: 20px; color: #adadad; font-size: 25px; cursor: pointer;}
@@ -97,14 +98,14 @@
 		    <h3 id="totalmoneyincart">Total: $0.00</h3>
 		    <p>If this price is ok, fill out the following.</p>
 		    <input placeholder="Your DCI Email">
-		    <p>Please select a payment option:</p>
+		    <p id="selectrawr">Please select a payment option:</p>
 		    <div class="paymentoptions">
 		      <img class="paymentoption" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png" title="Paypal">
 		      <img class="paymentoption" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Venmo_logo.png" title="Venmo">
-		      <img class="paymentoption" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVj2NtcpTJwZ0tZI3a1ZOTRz-LrulDrtfq7xESMKm9hju7WJW-" title="Cash (in person)">
+		      <img class="paymentoption" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVj2NtcpTJwZ0tZI3a1ZOTRz-LrulDrtfq7xESMKm9hju7WJW-" title="Cash">
 		    </div>
 		    <p>If you picked cash, you will be redirected to a page with details.</p>
-		    <button><i class="fa-duotone fa-money-bill-1-wave"></i> Finish & Pay</button>
+		    <button onclick="finishAndPay()"><i class="fa-duotone fa-money-bill-1-wave"></i> Finish & Pay</button>
 		  </div>
 		</div>
 		
@@ -182,6 +183,38 @@
 			    popup.style.transform = "translateY(0px)";
 			    dimmy.style.opacity = 1;
 			    dimmy.style.pointerEvents = "all";
+			  }
+			}
+			
+			const paymentOptions = document.querySelectorAll('.paymentoption');
+			var selectrawr = document.getElementById("selectrawr");
+			let paymentPlan = '';
+			function handlePaymentOptionClick(event) {
+				const selectedOption = event.target;
+				paymentOptions.forEach(option => {
+					option.classList.remove('selected');
+				});
+				if (selectedOption.title == paymentPlan) {
+					selectedOption.classList.remove('selected');
+					paymentPlan = '';
+					selectrawr.innerText = "Please select a payment option:";
+					return;
+				} else {
+					selectedOption.classList.add('selected');
+					selectrawr.style.color = "#9e9e9e";
+					paymentPlan = selectedOption.getAttribute('title');
+				}
+			}
+			paymentOptions.forEach(option => {
+				option.addEventListener('click', handlePaymentOptionClick);
+			});
+			
+			function finishAndPay() {
+			  var selectrawr = document.getElementById("selectrawr");
+			  if (paymentPlan == '') {
+			    selectrawr.style.color = "red";
+			  } else {
+			    selectrawr.innerText = paymentPlan;
 			  }
 			}
 		</script>
