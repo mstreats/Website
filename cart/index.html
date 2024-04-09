@@ -1,223 +1,189 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>M's Treats</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <style>
-      .fa {margin-right: 0.3em;}
-      body {height: 100vh; width: 100vw; margin: 0; font-family: "Sans-Serif", Tahoma, Verdana; background: linear-gradient(131deg, #fbbc7f 0%, #bf67e3 33%, #83ff7e 67%, #fff386 100%);}
-      
-      nav {height: 80px; width: 100%; background: #69696969; display: flex; flex-direction: column;}
-			.logobit {width: 100%; height: 50px; cursor: pointer;}
+	<head>
+		<title>M's Treats - Cart</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAbxJREFUOE9j/P////+nex8zSDvLMqADW2c7uNDhvYcw5F99fs3ACDLg6tRLYEntbD0URSADQBrVNNUZbl2/CZaDqRWNkwTzUQxANwSXAT9+/2CQTVbEbgDMCSDXoBsAsh2kGQRABrz/9RHTCzAnghRlrMsBe6Hdo5XBz9cXrhkkxxMrhOqC3Xt2Maz9tAksGMznB6bvfL3PIM0khRF4IIGgpeGYXkhYksJw+vgpsMTZCacYDuw7wODh7sGwafNmsAtAATc3dBaDg6sDg1CCOG4DQNEDAouj5zM4ODkwRM6MZVi8YzHDqccnGL60fIYb8ObzW9QwALlg8qrJDDfeXmN4/Pkxw4Zb68AGPXr0GO6NopNFYAP+BbNgugAUaN+iPqH4OeGKMkMT3wEUAywdLRlYw7lxGwDStEDnLortdZ8cwAaBXEDQAJh16LaDxJEN+PDhA2oYgELZ282b4V/KL7iTQf6H2S64SoRhVsJ0sNxX99+oXoAlz+CAYHA4YLMdZsCvX78ZfvtC7ADnBVi0gRMR1AD00AfxQQb0L5+EEsiMLz+9+g8TAaXtlLAkhpfPXmJNfSBBZAM+fv3EAAB0WS+GkbcM3gAAAABJRU5ErkJggg==">
+
+		<style>
+			body {height: 100vh; width: 100vw; margin: 0; font-family: "Sans-Serif", Tahoma, Verdana; background: linear-gradient(131deg, #fbbc7f 0%, #bf67e3 33%, #83ff7e 67%, #fff386 100%); overflow: hidden;}
+			nav {height: 80px; width: 100%; background: #69696969; display: flex; flex-direction: column;}
+			.logobit {width: 100%; height: 50px;}
 			.logo {height: 40px; width: 365px; margin: 5px; font-weight: bold; font-size: 20px; color: #ffffff; display: flex; align-items: center; border-bottom: 2px solid #ddffdd;}
 			.navbtns {width: calc(100% - 6px); height: 30px; display: flex; padding-left: 6px;}
 			.navbtns a {font-size: 16px; height: 30px; padding: 0 12px; display: flex; align-items: center; justify-content: center; color: #ffffff; text-decoration: none; font-weight: bold;}
 			.navbtns a:hover {text-decoration: underline; color: #ededed;}
-      
-      h1 {font-size: 50px; color: #ffffff; text-shadow: 5px 5px 5px #696969; margin: 0; width: 100%; display: flex; justify-content: center; align-items: center; height: 75px;}
-      .content {background: linear-gradient(#ffffff00 0%, #bf67e3 100%); width: calc(100% - 40px); display: flex; height: calc(100% - 215px); padding: 20px;}
-      .menu {height: 100%; width: 100%; background: #ffffff44; border-radius: 20px; overflow: hidden;}
-      .menu h2 {color: #ffffff; text-shadow: 5px 5px 5px #696969; text-decoration: underline; height: 60px; width: 100%; display: flex; align-items: center; justify-content: center; margin: 0;}
-      
-      footer {height: 20px; width: calc(100% - 10px); position: absolute; bottom: 0; color: #696969; padding-left: 10px; background: #ffffff;}
-      h3 {color: #ffffff; text-shadow: 3px 3px 3px #696969; text-decoration: underline; margin: 0;}
-      
-      .mnav {height: 50px; width: 100%; background: #ffffff44; border-top: 1px solid #ffffff; border-bottom: 1px solid #ffffff; display: flex; justify-content: center;}
-      .mnbtn {height: 100%; width: 100px; display: block; border: none; border-radius: none; position: relative; cursor: pointer; transition: 0.2s linear; background: #ffffff0a; padding: 0;}
-      .mnbtn:hover {background: #ffffff31; cursor: pointer;}
-      .pages-frame {width: 100%; height: calc(100% - 110px); background: #ffffff22; overflow: scroll;}
-      .page[current] {display: flex;}
-      .mnbtn[current] {border-bottom: 3px solid gray;}
-      
-      .page {display: none; flex-direction: column}
-      
-      .item {
-        height: 80px;
-        width: calc(100% - 20px);
-        background: #ffffff44;
-        padding: 10px;
-        display: flex;
-        flex-direction: row;
-        position: relative;
-        border-bottom: 1px solid #ffffff99;
-      }
-      
-      .item img {
-        height: 100%;
-        aspect-ratio: 1/1;
-        border-radius: 10px;
-      }
-      
-      .item .textframe {
-        height: 100%;
-        width: calc(100% - 205px);
-        color: #ffffff;
-        text-shadow: 2px 2px 5px #696969;
-        margin: 0;
-        margin-left: 10px;
-        position: relative;
-      }
-      
-      .item .textframe h4 {margin: 0;}
-      .item .textframe p {margin: 0;}
-      .item price {color: #09ff1a; text-shadow: 1px 1px 3px #444444; font-weight: bold; display: flex; flex-direction: column; gap: 15px; align-items: center; justify-content: center; position: absolute; right: 10px; top: 0; height: 100%;}
-      .item price button {
-        background: #f0f0f0;
-        padding: 7px 4px;
-        color: #9cbcba;
-        border: none;
-        border-radius: 10px;
-        font-weight: bold;
-        box-shadow: 2px 2px #ffffff;
-        transition: 0.1s ease-in-out;
-      }
-      .item price button:hover {
-        background: #ffffff;
-        cursor: pointer;
-        transform: translate(2px, 2px);
-        box-shadow: 0 0 #ffffff;
-      }
-      
-      #addToCartPopup {
-        padding: 6px 8px;
-        position: fixed;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #ececec;
-        color: #adadad;
-        font-weight: bold;
-        text-align: center;
-        border-radius: 10px;
-        opacity: 0;
-        transition: opacity 0.15s ease-in-out;
-        max-width: calc(100% - 20px);
-      }
-    </style>
-  </head>
-  <body>
-    <nav>
-			<div class="logobit" onclick="window.location.href='/'">
+			
+			.content {width: 100%; height: calc(100% - 100px); overflow: scroll;}
+			.backtoshop {color:cornflowerblue; text-shadow: 1px 1px 1px #000000; margin: 10px;}
+			.backtoshop:hover {color: rgb(114, 162, 250); cursor: pointer;}
+			#carttitle {color: #ffffff; width: 50%; margin: 0; margin-left: 10px; text-shadow: 1px 1px 1px #000000;}
+			.stufflol {width: 100%; display: flex; align-items: flex-start;}
+
+			#cartitems {height: auto; width: calc(75% - 35px); background: #ffffff44; display: flex; flex-direction: column; padding: 10px; padding-bottom: 0; margin: 10px; margin-top: 4px; border-radius: 15px;}
+			#noitems {color: #ffffff; margin-top: 5px; margin-bottom: 15px; text-shadow: 1px 1px 1px #000000; width: 100%; text-align: center;}
+			.cartitem {width: calc(100% - 20px); height: auto; padding: 10px; margin-bottom: 10px; background: #69696944; border-radius: 10px;}
+			.itemlabels {display: flex; width: 100%; height: 30px; border-bottom: 2px solid #ffffff}
+			.cartitem h4 {color: #ffffff; margin: 0; padding: 0; width: 50%;}
+			.itemprice {text-align: right; width: 50%;}
+			.itemstufflol {width: 100%; height: 120px; display: flex; position: relative;}
+			.itemimg {height: 100px; width: auto; margin: 10px;}
+			.itemingredients {height: 100px; width: 300px; margin: 10px; display: flex; color: #ffffffbd}
+			.removeitem {color: #ffffff; text-decoration: underline; margin: 0; position: absolute; bottom: 0; right: 0;}
+			.removeitem:hover {cursor: pointer; text-decoration: none;}
+
+			.totals {height: auto; width: calc(25% - 35px); padding: 10px; background: #69696944; margin: 10px; margin-top: 4px; border-radius: 15px;}
+			#totalmoney {margin: 0; padding: 10px; color: #ffffff; text-shadow: 1px 1px 1px #000000; width: calc(100% - 20px); border-bottom: 2px solid #ffffff;}
+			.proceedtocheckout {width: calc(100% - 20px); margin: 10px; height: 35px; background: #69696944; background-size: 400% 100%; border-radius: 10px; color: #ffffff; font-weight: bold; border: none; position: relative; overflow: hidden;}
+			.proceedtocheckout:hover {background: linear-gradient(to right, #fbbc7fad, #bf67e3ad, #83ff7ead, #fff386ad, #ffffffad, #fbbc7fad); animation: gradientAnimation 5s linear infinite; background-size: 400% 400%; cursor: pointer;}
+			@keyframes gradientAnimation {0% {background-position: 200% 0;} 100% {background-position: -200% 0;} }
+			.orderingdetails {color: #ffffff; margin: 0; padding-top: 10px; border-top: 2px solid #ffffff;}
+			
+			#checkoutdim {opacity: 0; pointer-events: none; z-index: 2; height: 100vh; width: 100vw; background: #00000069; position: absolute; top: 0; left: 0; display: flex; align-items: center; justify-content: center; transition: 0.4s ease;}
+			#checkoutcontainer {height: auto; transform: translateY(100vh); padding-bottom: 50px; width: 460px; background: linear-gradient(150deg, #ffffff 50%, #cdffcf 100%); overflow: hidden; border-radius: 20px; border: none; transition: 0.25s ease; z-index: 1; position: relative; display: flex; flex-direction: column; align-items: center;}
+			#checkoutcontainer h2 {width: 100%; text-align: center; font-size: 30px; color: #adadad; text-shadow: 1px 1px 0 #000000;}
+			#totalmoneyincart {margin: 0; width: 290px; color: #9e9e9e;}
+			#checkoutcontainer p {margin: 0; margin-bottom: 15px; margin-top: 10px; padding-top: 0; color: #9e9e9e; width: 280px;}
+			#checkoutcontainer input {font-size: 15px; padding: 8px 5px; border: 3px solid #addfaf; width: 274px; border-radius: 10px; transition: 0.2s ease; background: transparent;}
+			#checkoutcontainer input:focus {outline: none; border: 3px solid #8dbf8f; box-shadow: 0 0 5px #adadad;}
+			.paymentoptions {width: 290px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 20px; background: #eaeaea; border-radius: 10px;}
+			.paymentoption {height: 30px; width: 30px; background: #ffffff; border-radius: 5px;}
+			.paymentoption:hover {outline: 2px solid #8dbf8f; cursor: pointer;}
+      #checkoutcontainer button {width: 290px; padding: 8px 5px; border-radius: 10px; border: 3px solid #addfaf; font-size: 15px; font-weight: bold; color: #adadad; background: #ffffff; transition: 0.2s ease;}
+      #checkoutcontainer button:hover {cursor: pointer; color: #9e9e9e; box-shadow: 0 0 5px #adadad;}
+      .exitcheckout {position: absolute; top: 20px; right: 20px; color: #adadad; font-size: 25px; cursor: pointer;}
+
+			footer {height: 20px; width: calc(100% - 5px); padding-left: 5px; position: absolute; left: 0; bottom: 0; background: #ffffff; display: flex; align-items: center; color: #696969;}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<div class="logobit">
 				<div class="logo">
 					<img style="height: 100%; width: auto;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAbxJREFUOE9j/P////+nex8zSDvLMqADW2c7uNDhvYcw5F99fs3ACDLg6tRLYEntbD0URSADQBrVNNUZbl2/CZaDqRWNkwTzUQxANwSXAT9+/2CQTVbEbgDMCSDXoBsAsh2kGQRABrz/9RHTCzAnghRlrMsBe6Hdo5XBz9cXrhkkxxMrhOqC3Xt2Maz9tAksGMznB6bvfL3PIM0khRF4IIGgpeGYXkhYksJw+vgpsMTZCacYDuw7wODh7sGwafNmsAtAATc3dBaDg6sDg1CCOG4DQNEDAouj5zM4ODkwRM6MZVi8YzHDqccnGL60fIYb8ObzW9QwALlg8qrJDDfeXmN4/Pkxw4Zb68AGPXr0GO6NopNFYAP+BbNgugAUaN+iPqH4OeGKMkMT3wEUAywdLRlYw7lxGwDStEDnLortdZ8cwAaBXEDQAJh16LaDxJEN+PDhA2oYgELZ282b4V/KL7iTQf6H2S64SoRhVsJ0sNxX99+oXoAlz+CAYHA4YLMdZsCvX78ZfvtC7ADnBVi0gRMR1AD00AfxQQb0L5+EEsiMLz+9+g8TAaXtlLAkhpfPXmJNfSBBZAM+fv3EAAB0WS+GkbcM3gAAAABJRU5ErkJggg==">
 					<p style="margin-left: 15px;">M's Treats</p>
 				</div>
 			</div>
 			<div class="navbtns">
-			  <a href="/">Home</a>
 				<a href="/order">Order</a>
-				<a href="/cart" style="position: absolute; right: 0;"><i class="fa fa-shopping-cart"></i></a>
+				<a href="/cart">Cart</a>
 			</div>
 		</nav>
-    
-    <h1>Order</h1>
-    
-    <div class="content">
-      <div class="menu">
-        <h2>Menu</h2>
-        <div class="mnav">
-          <button class="mnbtn" id="boba" current="true">Boba</button>
-          <button class="mnbtn" id="cocoa">Hot Cocoa</button>
-          <button class="mnbtn" id="lime">Limeade</button>
-          <button class="mnbtn" id="ice">Ice Cream</button>
-        </div>
-        <div class="pages-frame">
-          
-          <div class="page" id="bobapage" current="true">
-            <!-- JavaScript adds the items here -->
-          </div>
-          
-          <div class="page" id="cocoapage">
-            <!-- JavaScript adds the items here -->
-          </div>
-          
-          <div class="page" id="limepage">
-            <!-- JavaScript adds the items here -->
-          </div>
-          
-          <div class="page" id="icepage">
-            <!-- JavaScript adds the items here -->
-          </div>
-          
-        </div>
-      </div>
-    </div><!-- content -->
-    <div id="addToCartPopup">Item Added Successfully!</div>
-    
-    <footer>
-      All code copyright &copy; wraithcode 2024
-    </footer>
-    
-    <script>
-      const buttons = document.querySelectorAll('.mnbtn');
-      const pages = document.querySelectorAll('.page');
-      let page = '';
-    
-      buttons.forEach(button => {
-        button.addEventListener('click', () => {
-          buttons.forEach(btn => {
-            btn.style.borderBottom = 'none';
-          });
-          
-          button.style.borderBottom = '3px solid gray';
-          page = button.id;
-    
-          pages.forEach(page => {
-            if (page.id === `${button.id}page`) {
-              page.style.display = 'flex';
-            } else {
-              page.style.display = 'none';
-            }
-          });
-        });
-      });
-      
-      function addItems(pageid, imgurl, name, ingredients, price, category) {
-        var pg = document.getElementById(pageid);
-        
-        const newItem = document.createElement('div');
-        newItem.className = "item";
-        newItem.innerHTML = `
-          <img src="${imgurl}">
-          <div class="textframe">
-            <h4>${name}</h4>
-            <p><strong>Ingredients: </strong>${ingredients}</p>
-          </div>
-          <price>${"$" + price}<button onclick="storeItem('${name}', '${price}', '${imgurl}', '${ingredients}')"><i class="fa fa-cart-plus"></i>Add to cart</button></price>
-        `;
-        pg.appendChild(newItem);
-      }
-      
-      document.addEventListener('DOMContentLoaded', () => {
-        addItems("bobapage", "https://thumbs.dreamstime.com/b/milk-bubble-tea-glyph-icon-taiwanese-popular-drink-street-food-isolated-vector-stock-illustration-black-filled-symbol-228491130.jpg", "Placeholder Item", "placeholder, placeholder2", "5.43", "Boba");
-        addItems("bobapage", "https://thumbs.dreamstime.com/b/milk-bubble-tea-glyph-icon-taiwanese-popular-drink-street-food-isolated-vector-stock-illustration-black-filled-symbol-228491130.jpg", "Placeholder Item", "placeholder, placeholder2", "5.43", "Boba");
-        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Normal", "placeholder, placeholder2", "1.50", "Hot Cocoa");
-        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Peppermint", "placeholder, placeholder2", "1.50", "Hot Cocoa");
-        addItems("cocoapage", "https://cdn.akamai.steamstatic.com/steam/apps/1228610/capsule_616x353.jpg?t=1649362618", "Strawberry", "placeholder, placeholder2", "1.50", "Hot Cocoa");
-      });
-      
-      function storeItem(namef, pricef, imgurlf, ingredientsf) {
-        var item = {
-          name: namef,
-          price: pricef,
-          imgurl: imgurlf,
-          ingredients: ingredientsf
-        };
-        var storedItems = JSON.parse(localStorage.getItem("mstreatsitems")) || [];
-        storedItems.push(item);
-        localStorage.setItem("mstreatsitems", JSON.stringify(storedItems));
-        
-        var popup = document.getElementById("addToCartPopup");
-        popup.style.pointerEvents = "all";
-        popup.style.opacity = "1";
-        setTimeout(() => {
-          popup.style.pointerEvents = "none";
-          popup.style.opacity = "0";
-        }, 3000);
-      }
-    </script>
-  </body>
+		<div class="content">
+			<p class="backtoshop"><i class="fa fa-angle-left"></i> Continue Shopping</p>
+			<h2 id="carttitle">Your Cart (0 Items)</h2>
+			<div class="stufflol">
+
+				<div id="cartitems">
+					<div id="items">
+						<!-- items added by js here -->
+					</div>
+					<p id="noitems">Looks like there's nothing in your cart! Visit our <a href="/order">order</a> page to get started.</p>
+				</div>
+
+				<div class="totals">
+					<h2 id="totalmoney">Total: $0.00</h2>
+					<button class="proceedtocheckout" onclick="checkoutPopup()"><i class="fa-duotone fa-lock-keyhole"></i> Proceed To Checkout</button>
+					<p class="orderingdetails"><strong>Ordering Details:</strong> Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. mewo haha</p>
+				</div>
+			</div>
+		</div>
+		
+		<div id="checkoutdim">
+		  <div id="checkoutcontainer">
+		    <i class="exitcheckout fa-regular fa-xmark" onclick="checkoutPopup()"></i>
+		    <h2><i class="fa-duotone fa-bags-shopping"></i> Checkout</h2>
+		    <h3 id="totalmoneyincart">Total: $0.00</h3>
+		    <p>If this price is ok, fill out the following.</p>
+		    <input placeholder="Your DCI Email">
+		    <p>Please select a payment option:</p>
+		    <div class="paymentoptions">
+		      <img class="paymentoption" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png" title="Paypal">
+		      <img class="paymentoption" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Venmo_logo.png" title="Venmo">
+		      <img class="paymentoption" src="https://static-00.iconduck.com/assets.00/square-cash-icon-2048x2048-b2cgacnc.png" title="Cash (in person)">
+		    </div>
+		    <p>If you picked cash, you will be redirected to a page with details.</p>
+		    <button><i class="fa-duotone fa-money-bill-1-wave"></i> Finish & Pay</button>
+		  </div>
+		</div>
+		
+		<footer>All code copyright &copy; wraithcode 2024</footer>
+
+		<!-- Scripts start here -->
+		<script>
+            // adding items from localStorage
+            function addItems() {
+              var cart = document.getElementById("items");
+              var storedItems = JSON.parse(localStorage.getItem("mstreatsitems")) || [];
+              storedItems.forEach(function(item) {
+                  const newItem = document.createElement('div');
+                  newItem.className = "cartitem";
+                  newItem.innerHTML = `
+                      <div class="itemlabels">
+                          <h4>${item.name}</h4><h4 class="itemprice">${'$' + parseFloat(item.price).toFixed(2)}</h4>
+                      </div>
+                      <div class="itemstufflol">
+                          <img class="itemimg" src="${item.imgurl}">
+                          <div class="itemingredients">
+                              <p style="margin: 0;"><strong>Ingredients:</strong> ${item.ingredients}</p>
+                          </div>
+                          <p class="removeitem">Remove</p>
+                      </div>
+                  `;
+                cart.appendChild(newItem);
+              	});
+          	}
+
+            // grabbing number of items in the cart
+			numofitems = document.getElementsByClassName("cartitem").length;
+			// grabbing element IDs
+			var cartnum = document.getElementById("carttitle");
+			var totalpricetext = document.getElementById("totalmoney");
+            var noitems = document.getElementById("noitems");
+			// on load, apply data
+			window.addEventListener("DOMContentLoaded", function() {
+            	// adding items from localStorage
+				addItems();
+            	// grabbing number of items in the cart
+				numofitems = document.getElementsByClassName("cartitem").length;
+                // if there are no items in the cart, display the no items message
+            if (numofitems == 0) {noitems.style.display = "block"} else {noitems.style.display = "none"};
+            
+				var sbool = (numofitems === 1) ? "" : "s";
+				cartnum.innerText = "Your Cart (" + numofitems + " Item" + sbool + ")";
+				calculateTotal();
+			});
+            
+			// calculate total price and apply
+			function calculateTotal() {
+				// grab prices
+				var itemPrices = document.getElementsByClassName("itemprice");
+				// set initial price
+				var totalPrice = 0;
+				// do some magic stuff hehe
+				for (var i = 0; i < itemPrices.length; i++) {
+					var price = parseFloat(itemPrices[i].textContent.trim().replace("$", ""));
+					totalPrice += price;
+				}
+				// apply
+				totalpricetext.innerText = "Total: $" + totalPrice.toFixed(2);
+				document.getElementById("totalmoneyincart").innerText = "Total: $" + totalPrice.toFixed(2);
+			}
+			
+			function checkoutPopup() {
+			  var dimmy = document.getElementById("checkoutdim");
+			  var popup = document.getElementById("checkoutcontainer");
+			  if (popup.style.transform == "translateY(0px)") {
+			    popup.style.transform = "translateY(100vh)";
+			    dimmy.style.opacity = 0;
+			    dimmy.style.pointerEvents = "none";
+			  } else {
+			    popup.style.transform = "translateY(0px)";
+			    dimmy.style.opacity = 1;
+			    dimmy.style.pointerEvents = "all";
+			  }
+			}
+		</script>
+	</body>
 </html>
