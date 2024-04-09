@@ -151,7 +151,7 @@
             	// grabbing number of items in the cart
 				numofitems = document.getElementsByClassName("cartitem").length;
                 // if there are no items in the cart, display the no items message
-            if (numofitems == 0) {noitems.style.display = "block"} else {noitems.style.display = "none"};
+                if (numofitems == 0) {noitems.style.display = "block"} else {noitems.style.display = "none"};
             
 				var sbool = (numofitems === 1) ? "" : "s";
 				cartnum.innerText = "Your Cart (" + numofitems + " Item" + sbool + ")";
@@ -225,7 +225,7 @@
 			function clearCart() {
 			  localStorage.removeItem('mstreatsitems');
 			  document.getElementById('items').innerHTML = "";
-			  if (numofitems == 0) {noitems.style.display = "block"} else {noitems.style.display = "none"};
+			  document.getElementById("noitems").style.display = "block";
 			}
 		</script>
 	</body>
