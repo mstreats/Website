@@ -22,7 +22,7 @@
 			#carttitle {color: #ffffff; width: 50%; margin: 0; margin-left: 10px; text-shadow: 1px 1px 1px #000000;}
 			.stufflol {width: 100%; display: flex; align-items: flex-start;}
 
-			#cartitems {height: auto; width: calc(75% - 35px); background: #ffffff44; display: flex; flex-direction: column; padding: 10px; padding-bottom: 0; margin: 10px; margin-top: 4px; border-radius: 15px;}
+			#cartitems {height: auto; width: calc(75% - 35px); background: #ffffff44; display: flex; flex-direction: column; padding: 10px; padding-bottom: 0; margin: 10px; margin-top: 4px; border-radius: 15px; position: relative;}
 			#noitems {color: #ffffff; margin-top: 5px; margin-bottom: 15px; text-shadow: 1px 1px 1px #000000; width: 100%; text-align: center;}
 			.cartitem {width: calc(100% - 20px); height: auto; padding: 10px; margin-bottom: 10px; background: #69696944; border-radius: 10px;}
 			.itemlabels {display: flex; width: 100%; height: 30px; border-bottom: 2px solid #ffffff}
@@ -33,6 +33,7 @@
 			.itemingredients {height: 100px; width: 300px; margin: 10px; display: flex; color: #ffffffbd}
 			.removeitem {color: #ffffff; text-decoration: underline; margin: 0; position: absolute; bottom: 0; right: 0;}
 			.removeitem:hover {cursor: pointer; text-decoration: none;}
+			.clearcart {position: absolute; top: 0; right: 10px; transform: translateY(-22px); background: none; border: none; text-decoration: underline; color: #ffffff; cursor: pointer;}
 
 			.totals {height: auto; width: calc(25% - 35px); padding: 10px; background: #69696944; margin: 10px; margin-top: 4px; border-radius: 15px;}
 			#totalmoney {margin: 0; padding: 10px; color: #ffffff; text-shadow: 1px 1px 1px #000000; width: calc(100% - 20px); border-bottom: 2px solid #ffffff;}
@@ -60,7 +61,6 @@
 		</style>
 	</head>
 	<body>
-	  <button onclick="clearCart()" style="position: absolute; top: 20px; right: 20px;">Clear</button>
 		<nav>
 			<div class="logobit">
 				<div class="logo">
@@ -79,6 +79,7 @@
 			<div class="stufflol">
 
 				<div id="cartitems">
+				  <button onclick="clearCart()" class="clearcart">Clear Cart</button>
 					<div id="items">
 						<!-- items added by js here -->
 					</div>
@@ -119,7 +120,7 @@
             function addItems() {
               var cart = document.getElementById("items");
               var storedItems = JSON.parse(localStorage.getItem("mstreatsitems")) || [];
-              storedItems.forEach(function(item) {
+              storedItems.forEach(function(item, index) {
                   const newItem = document.createElement('div');
                   newItem.className = "cartitem";
                   newItem.innerHTML = `
@@ -131,12 +132,26 @@
                           <div class="itemingredients">
                               <p style="margin: 0;"><strong>Ingredients:</strong> ${item.ingredients}</p>
                           </div>
-                          <p class="removeitem">Remove</p>
+                          <p class="removeitem" data-index="${index}">Remove</p>
                       </div>
                   `;
-                cart.appendChild(newItem);
-              	});
-          	}
+                  cart.appendChild(newItem);
+              });
+          
+              // Add event listener to each remove button
+              var removeButtons = document.querySelectorAll('.removeitem');
+              removeButtons.forEach(function(button) {
+                  button.addEventListener('click', function() {
+                      var indexToRemove = parseInt(button.getAttribute('data-index'));
+                      // Remove item from localStorage
+                      storedItems.splice(indexToRemove, 1);
+                      localStorage.setItem("mstreatsitems", JSON.stringify(storedItems));
+                      // Remove item from DOM
+                      button.closest('.cartitem').remove();
+                  });
+              });
+            }
+
 
             // grabbing number of items in the cart
 			numofitems = document.getElementsByClassName("cartitem").length;
