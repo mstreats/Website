@@ -146,7 +146,11 @@
             var noitems = document.getElementById("noitems");
 			// on load, apply data
 			window.addEventListener("DOMContentLoaded", function() {
-            	// adding items from localStorage
+          dodastuff();
+			});
+			
+			function dodastuff() {
+			      	// adding items from localStorage
 				addItems();
             	// grabbing number of items in the cart
 				numofitems = document.getElementsByClassName("cartitem").length;
@@ -156,7 +160,7 @@
 				var sbool = (numofitems === 1) ? "" : "s";
 				cartnum.innerText = "Your Cart (" + numofitems + " Item" + sbool + ")";
 				calculateTotal();
-			});
+			}
             
 			// calculate total price and apply
 			function calculateTotal() {
@@ -225,7 +229,7 @@
 			function clearCart() {
 			  localStorage.removeItem('mstreatsitems');
 			  document.getElementById('items').innerHTML = "";
-			  document.getElementById("noitems").style.display = "block";
+			  dodastuff();
 			}
 		</script>
 	</body>
