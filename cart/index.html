@@ -225,6 +225,7 @@
 			function clearCart() {
 			  localStorage.removeItem('mstreatsitems');
 			  document.getElementById('items').innerHTML = "";
+			  if (numofitems == 0) {noitems.style.display = "block"} else {noitems.style.display = "none"};
 			}
 		</script>
 	</body>
