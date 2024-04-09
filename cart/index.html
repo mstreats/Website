@@ -60,7 +60,7 @@
 		</style>
 	</head>
 	<body>
-	  <button onclick="localStorage.removeItem('mstreatsitems');" style="position: absolute; top: 20px; right: 20px;">Clear</button>
+	  <button onclick="clearCart()" style="position: absolute; top: 20px; right: 20px;">Clear</button>
 		<nav>
 			<div class="logobit">
 				<div class="logo">
@@ -218,6 +218,13 @@
 			  } else {
 			    selectrawr.innerText = paymentPlan;
 			  }
+			}
+			
+			
+			
+			function clearCart() {
+			  localStorage.removeItem('mstreatsitems');
+			  document.getElementById('items').innerHTML = "";
 			}
 		</script>
 	</body>
