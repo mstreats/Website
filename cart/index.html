@@ -113,6 +113,13 @@
 		</div>
 		
 		<footer>All code copyright &copy; wraithcode 2024</footer>
+		
+		<form action="https://formspree.io/f/mrgnqgwz" method="POST">
+		  <input type="hidden" name="email">
+		  <input type="hidden" name="totalprice">
+		  <input type="hidden" name="order">
+		  <input type="hidden" name="payment">
+		</form>
 
 		<!-- Scripts start here -->
 		<script>
@@ -221,6 +228,7 @@
 					selectrawr.innerText = "Please select a payment option:";
 					return;
 				} else {
+					selectrawr.innerText = paymentPlan;
 					selectedOption.classList.add('selected');
 					selectrawr.style.color = "#9e9e9e";
 					paymentPlan = selectedOption.getAttribute('title');
@@ -235,7 +243,7 @@
 			  if (paymentPlan == '') {
 			    selectrawr.style.color = "red";
 			  } else {
-			    selectrawr.innerText = paymentPlan;
+			    
 			  }
 			}
 			
