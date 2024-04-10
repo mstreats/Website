@@ -155,6 +155,8 @@
                       localStorage.setItem("mstreatsitems", JSON.stringify(storedItems));
                       // Remove item from DOM
                       button.closest('.cartitem').remove();
+					  document.getElementById('items').innerHTML = "";
+					  addItems();
                       dodastuff();
                   });
               });
