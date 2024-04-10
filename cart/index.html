@@ -148,6 +148,7 @@
                       localStorage.setItem("mstreatsitems", JSON.stringify(storedItems));
                       // Remove item from DOM
                       button.closest('.cartitem').remove();
+                      dodastuff();
                   });
               });
             }
@@ -161,12 +162,11 @@
             var noitems = document.getElementById("noitems");
 			// on load, apply data
 			window.addEventListener("DOMContentLoaded", function() {
+			    addItems();
           dodastuff();
 			});
 			
 			function dodastuff() {
-			      	// adding items from localStorage
-				addItems();
             	// grabbing number of items in the cart
 				numofitems = document.getElementsByClassName("cartitem").length;
                 // if there are no items in the cart, display the no items message
