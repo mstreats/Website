@@ -148,7 +148,6 @@
                       localStorage.setItem("mstreatsitems", JSON.stringify(storedItems));
                       // Remove item from DOM
                       button.closest('.cartitem').remove();
-                      dodastuff();
                   });
               });
             }
@@ -239,6 +238,12 @@
 			    selectrawr.innerText = paymentPlan;
 			  }
 			}
+			
+			document.addEventListener("click", function() {
+			  setTimeout(() => {
+          dodastuff();
+        }, "100");
+			});
 			
 			
 			
