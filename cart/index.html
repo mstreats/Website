@@ -228,10 +228,10 @@
 					selectrawr.innerText = "Please select a payment option:";
 					return;
 				} else {
-					selectrawr.innerText = paymentPlan;
 					selectedOption.classList.add('selected');
 					selectrawr.style.color = "#9e9e9e";
 					paymentPlan = selectedOption.getAttribute('title');
+					selectrawr.innerText = paymentPlan;
 				}
 			}
 			paymentOptions.forEach(option => {
