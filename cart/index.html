@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -247,20 +248,39 @@
 			  if (paymentPlan == '') {
 			    selectrawr.style.color = "red";
 			  } else {
-			    
+			    // updating form data for formspree
+                	// email
+                var dciemail = document.getElementById("dci-email");
+                if (dciemail.value = "") {
+                  return;
+                } else {
+                  var email = document.getElementById("fs-email");
+                  email.value = dciemail.value;
+                }
+                	// price
+                var totalpricetext = document.getElementById("totalmoney").innerText.replace("Total: ", "").trim();
+                var fsprice = document.getElementById("fs-price");
+                fsprice.value = totalpricetext;
+                	// payment method
+                var fspaymentoption = document.getElementById("fs-paymentoption");
+                fspaymentoption.value = paymentPlan;
+                	// order
+                var fsorder = document.getElementById("fs-order");
+              	// stringify order
+                const cartItems = document.querySelectorAll('div.cartitem');
+                let itemNames = [];
+                cartItems.forEach(cartItem => {
+                    const h4 = cartItem.querySelector('h4');
+                    if (h4) {
+                        itemNames.push(h4.innerText + ", ");
+                    }
+                });
+                let order = JSON.stringify(itemNames);
+                fsorder.value = order;
+                
+                alert(email.value + " " + fsprice.value + " " + fspaymentoption.value + " " + fsorder.value);
+              
 			  }
-              // updating form data for formspree
-              var dciemail = document.getElementById("dci-email");
-              if (dciemail.value = "") {
-              	return;
-              } else {
-              	var email = document.getElementById("fs-email");
-                email.value = dciemail.value;
-              }
-              var totalpricetext = document.getElementById("totalmoney").innerText.replace("Total: $", "").trim();
-              var fsprice = document.getElementById("fs-price");
-              fsprice.value = totalpricetext;
-              alert(email.value + " " + fsprice.value);
 			}
 			
 			function clearCart() {
@@ -271,3 +291,4 @@
 		</script>
 	</body>
 </html>
+<!-- made by wraithcode :) -->
