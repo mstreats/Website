@@ -89,7 +89,7 @@
 
 				<div class="totals">
 					<h2 id="totalmoney">Total: $0.00</h2>
-					<button class="proceedtocheckout" onclick="checkoutPopup()"><i class="fa-duotone fa-lock-keyhole"></i> Proceed To Checkout</button>
+					<button class="proceedtocheckout" onclick="checkoutPopup()"><i class="fa fa-lock"></i> Proceed To Checkout</button>
 					<p class="orderingdetails"><strong>Ordering Details:</strong> Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. mewo haha</p>
 				</div>
 			</div>
@@ -97,11 +97,11 @@
 		
 		<div id="checkoutdim">
 		  <div id="checkoutcontainer">
-		    <i class="exitcheckout fa-regular fa-xmark" onclick="checkoutPopup()"></i>
+		    <i class="exitcheckout fa fa-xmark" onclick="checkoutPopup()"></i>
 		    <h2><i class="fa-duotone fa-bags-shopping"></i> Checkout</h2>
 		    <h3 id="totalmoneyincart">Total: $0.00</h3>
 		    <p>If this price is ok, fill out the following.</p>
-		    <input placeholder="Your DCI Email">
+		    <input placeholder="Your DCI Email" id="dci-email">
 		    <p id="selectrawr">Please select a payment option:</p>
 		    <div class="paymentoptions">
 		      <img class="paymentoption" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png" title="Paypal">
@@ -109,18 +109,19 @@
 		      <img class="paymentoption" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVj2NtcpTJwZ0tZI3a1ZOTRz-LrulDrtfq7xESMKm9hju7WJW-" title="Cash">
 		    </div>
 		    <p>If you picked cash, you will be redirected to a page with details.</p>
-		    <button onclick="finishAndPay()"><i class="fa-duotone fa-money-bill-1-wave"></i> Finish & Pay</button>
+		    <button onclick="finishAndPay()"><i class="fa fa-money-bill-1-wave"></i> &nbsp; Finish & Pay</button>
 		  </div>
 		</div>
 		
 		<footer>All code copyright &copy; wraithcode 2024</footer>
 		
 		<form action="https://formspree.io/f/mrgnqgwz" method="POST">
-		  <input type="hidden" name="email">
-		  <input type="hidden" name="totalprice">
-		  <input type="hidden" name="order">
-		  <input type="hidden" name="payment">
-		</form>
+          <input type="hidden" id="fs-price" name="price">
+          <input type="hidden" id="fs-order" name="order">
+          <input type="hidden" id="fs-email" name="email">
+          <input type="hidden" id="fs-paymentoption" name="paymentoption">
+          <button type="submit">Send</button>
+        </form>
 
 		<!-- Scripts start here -->
 		<script>
@@ -248,9 +249,19 @@
 			  } else {
 			    
 			  }
+              // updating form data for formspree
+              var dciemail = document.getElementById("dci-email");
+              if (dciemail.value = "") {
+              	return;
+              } else {
+              	var email = document.getElementById("fs-email");
+                email.value = dciemail.value;
+              }
+              var totalpricetext = document.getElementById("totalmoney").innerText.replace("Total: $", "").trim();
+              var fsprice = document.getElementById("fs-price");
+              fsprice.value = totalpricetext;
+              alert(email.value + " " + fsprice.value);
 			}
-			
-			
 			
 			function clearCart() {
 			  localStorage.removeItem('mstreatsitems');
