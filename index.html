@@ -8,7 +8,7 @@
     <style>
       body {height: 100vh; width: 100vw; margin: 0; font-family: "Sans-Serif", Tahoma, Verdana; background: linear-gradient(131deg, #fbbc7f 0%, #bf67e3 33%, #83ff7e 67%, #fff386 100%);}
       nav {height: 80px; width: 100%; background: #69696969; display: flex; flex-direction: column;}
-			.logobit {width: 100%; height: 50px;}
+			.logobit {width: 100%; height: 50px; cursor: pointer;}
 			.logo {height: 40px; width: 365px; margin: 5px; font-weight: bold; font-size: 20px; color: #ffffff; display: flex; align-items: center; border-bottom: 2px solid #ddffdd;}
 			.navbtns {width: calc(100% - 6px); height: 30px; display: flex; padding-left: 6px;}
 			.navbtns a {font-size: 16px; height: 30px; padding: 0 12px; display: flex; align-items: center; justify-content: center; color: #ffffff; text-decoration: none; font-weight: bold;}
@@ -37,15 +37,16 @@
   </head>
   <body>
     <nav>
-			<div class="logobit">
+			<div class="logobit" onclick="window.location.href='/'">
 				<div class="logo">
 					<img style="height: 100%; width: auto;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAbxJREFUOE9j/P////+nex8zSDvLMqADW2c7uNDhvYcw5F99fs3ACDLg6tRLYEntbD0URSADQBrVNNUZbl2/CZaDqRWNkwTzUQxANwSXAT9+/2CQTVbEbgDMCSDXoBsAsh2kGQRABrz/9RHTCzAnghRlrMsBe6Hdo5XBz9cXrhkkxxMrhOqC3Xt2Maz9tAksGMznB6bvfL3PIM0khRF4IIGgpeGYXkhYksJw+vgpsMTZCacYDuw7wODh7sGwafNmsAtAATc3dBaDg6sDg1CCOG4DQNEDAouj5zM4ODkwRM6MZVi8YzHDqccnGL60fIYb8ObzW9QwALlg8qrJDDfeXmN4/Pkxw4Zb68AGPXr0GO6NopNFYAP+BbNgugAUaN+iPqH4OeGKMkMT3wEUAywdLRlYw7lxGwDStEDnLortdZ8cwAaBXEDQAJh16LaDxJEN+PDhA2oYgELZ282b4V/KL7iTQf6H2S64SoRhVsJ0sNxX99+oXoAlz+CAYHA4YLMdZsCvX78ZfvtC7ADnBVi0gRMR1AD00AfxQQb0L5+EEsiMLz+9+g8TAaXtlLAkhpfPXmJNfSBBZAM+fv3EAAB0WS+GkbcM3gAAAABJRU5ErkJggg==">
 					<p style="margin-left: 15px;">M's Treats</p>
 				</div>
 			</div>
 			<div class="navbtns">
+			  <a href="/">Home</a>
 				<a href="/order">Order</a>
-				<a href="/cart">Cart</a>
+				<a href="/cart" style="position: absolute; right: 0;"><i class="fa fa-shopping-cart"></i></a>
 			</div>
 		</nav>
     
