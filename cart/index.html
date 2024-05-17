@@ -272,7 +272,7 @@
                 cartItems.forEach(cartItem => {
                     const h4 = cartItem.querySelector('h4');
                     if (h4) {
-                        itemNames.push(h4.innerText + ", ");
+                        itemNames.push(h4.innerText);
                     }
                 });
                 let order = JSON.stringify(itemNames);
